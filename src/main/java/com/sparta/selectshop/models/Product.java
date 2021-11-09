@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@Entity
+@Entity(name="Product")
 @NoArgsConstructor
 public class Product extends Timestamped {
 
