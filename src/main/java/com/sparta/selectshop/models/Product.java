@@ -1,5 +1,6 @@
 package com.sparta.selectshop.models;
 
+import com.sparta.selectshop.dto.ItemDto;
 import com.sparta.selectshop.dto.ProductMypriceRequestDto;
 import com.sparta.selectshop.dto.ProductRequestDto;
 import lombok.Getter;
@@ -40,5 +41,12 @@ public class Product extends Timestamped {
 
     public void update(ProductMypriceRequestDto requestDto) {
         this.myPrice = requestDto.getMyPrice();
+    }
+
+    public void updateByItemDto(ItemDto itemDto) {
+        this.title = itemDto.getTitle();
+        this.image = itemDto.getImage();
+        this.link = itemDto.getLink();
+        this.lowPrice = itemDto.getLowPrice();
     }
 }
