@@ -19,7 +19,7 @@ public class ProductScheduler {
     private final ProductService productService;
     private final NaverShopSearch naverShopSearch;
 
-    @Scheduled(cron = "0 0 1 * * *")
+    @Scheduled(cron = "0 0 1,13 * * *")
     public void updatePrice() throws InterruptedException {
         System.out.println("가격 업데이트 실행");
         // 저장된 모든 관심상품을 조회합니다.

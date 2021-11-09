@@ -98,7 +98,7 @@ input#query {
     background-color: #e9ecef;
     border: none;
 
-    background-image: url('static/images/baseline_search_black_24dp.png');
+    background-image: url('../images/baseline_search_black_24dp.png');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 20px 20px;

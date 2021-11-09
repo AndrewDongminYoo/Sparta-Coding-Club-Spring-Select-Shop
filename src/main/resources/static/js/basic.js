@@ -55,7 +55,7 @@ function execSearch() {
         success: function (response) {
             let resultBox = $('#search-result-box')
             resultBox.empty();
-            response.forEach((itemDto) => {
+            response && response.forEach((itemDto) => {
                 // 4. for 문마다 itemDto 를 꺼내서 HTML 만들고 검색결과 목록에 붙이기!
                 let tempHtml = addHTML(itemDto);
                 resultBox.append(tempHtml);
@@ -79,7 +79,7 @@ function addHTML(itemDto) {
                 </div>
             </div>
             <div class="search-itemDto-right">
-                <img src="images/icon-save.png" alt="" onclick='addProduct(${JSON.stringify(itemDto)})'>
+                <img src="../images/baseline_save_alt_black_24dp.png" alt="" onclick='addProduct(${JSON.stringify(itemDto)})'>
             </div>
         </div>`;
 }
@@ -108,7 +108,7 @@ function showProduct() {
             let productContainer = $('#product-container')
             productContainer.empty();
             $("#search-result-box").empty();
-            response.forEach((product) => {
+            response && response.forEach((product) => {
                 // 3. for 문마다 관심 상품 HTML 만들어서 관심상품 목록에 붙이기!
                 let tempHtml = addProductItem(product);
                 productContainer.append(tempHtml);
@@ -153,7 +153,7 @@ function setMyPrice() {
         type: "PUT",
         url: `/api/products/${targetId}`,
         contentType: "application/json",
-        data: JSON.stringify({myprice: myprice}),
+        data: JSON.stringify({myPrice: myPrice}),
         success: function () {
             // 4. 모달을 종료한다. $('#container').removeClass('active');
             $('#container').removeClass('active');
