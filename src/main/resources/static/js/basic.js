@@ -140,8 +140,8 @@ function addProductItem(product) {
 }
 
 function setMyPrice() {
-    // 1. id가 myprice 인 input 태그에서 값을 가져온다.
-    let myPrice = $('#myprice');
+    // 1. id가 myPrice 인 input 태그에서 값을 가져온다.
+    let myPrice = $('#myPrice');
     // 2. 만약 값을 입력하지 않았으면 alert 를 띄우고 중단한다.
     if (!myPrice.val()) {
         alert("원하는 최저가를 입력해주세요. (닫기를 누르면 최저가 기능 해제)");
@@ -162,7 +162,6 @@ function setMyPrice() {
             // 6. 창을 새로고침한다. window.location.reload();
             window.location.reload();
             targetId = "";
-            console.log(response);
         }
     })
 }
