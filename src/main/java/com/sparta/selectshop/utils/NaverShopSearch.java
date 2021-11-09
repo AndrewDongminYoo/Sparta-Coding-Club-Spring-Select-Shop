@@ -46,5 +46,6 @@ public class NaverShopSearch {
         NaverShopSearch naverShopSearch = new NaverShopSearch();
         String result = naverShopSearch.search("오리고기 동결건조 트릿");
         List<ItemDto> itemDtoList = naverShopSearch.fromJSONtoItems(result);
+        System.out.println(itemDtoList.toString());
     }
 }
