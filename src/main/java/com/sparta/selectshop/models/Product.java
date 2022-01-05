@@ -56,4 +56,8 @@ public class Product extends Timestamped {
         this.link = itemDto.getLink();
         this.lowPrice = itemDto.getLowPrice();
     }
+
+    public void updateMyPrice(int myPrice) {
+        this.myPrice = myPrice;
+    }
 }

@@ -29,31 +29,49 @@ $(document).ready(function () {
     $('#see-area').show();
     $('#search-area').hide();
 
-    if ($('#admin').length === 1) {
-        showProduct(true);
-    } else {
-        showProduct();
-    }
+    showProduct();
 })
 
-function showProduct(isAdmin = false) {
-    let productContainer = $('#product-container')
-    // 1. GET /api/products 요청
-    // 2. #product-container(관심상품 목록), #search-result-box(검색결과 목록) 비우기
-    // 3. for 문 마다 addProductItem 함수 실행시키고 HTML 만들어서 #product-container 에 붙이기
-    $.ajax({
-        type: 'GET',
-        url: isAdmin ? '/api/admin/products' : '/api/products',
-        success: function (response) {
+
+function showProduct() {
+    let isAdmin = false;
+    if ($('#admin').length === 1) {
+        isAdmin = true
+    }
+
+    let sorting = $("#sorting option:selected").val();
+    let isAsc = $(':radio[name="isAsc"]:checked').val();
+    console.log(sorting, isAsc);
+    let productContainer =  $('#product-container')
+    productContainer.empty();
+    $('#search-result-box').empty();
+    $('#pagination').pagination({
+        dataSource: isAdmin ? `/api/admin/products?sortBy=${sorting}&isAsc=${isAsc}` : `/api/products?sortBy=${sorting}&isAsc=${isAsc}`,
+        locator: 'content',
+        alias: {
+            pageNumber: 'page',
+            pageSize: 'size'
+        },
+        totalNumberLocator: (response) => {
+            return response["totalElements"];
+        },
+        pageSize: 10,
+        showPrevious: true,
+        showNext: true,
+        ajax: {
+            beforeSend: function() {
+                $('#product-container').html('상품 불러오는 중...');
+            }
+        },
+        callback: function(data, pagination) {
             productContainer.empty();
-            $('#search-result-box').empty();
-            for (let i = 0; i < response.length; i++) {
-                let product = response[i];
+            for (let i = 0; i < data.length; i++) {
+                let product = data[i];
                 let tempHtml = addProductItem(product);
                 productContainer.append(tempHtml);
             }
         }
-    })
+    });
 }
 
 function addProductItem(product) {

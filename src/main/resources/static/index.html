@@ -8,8 +8,10 @@
     <meta property="og:title" content="꼬리네 사료냠냠 셀렉샵">
     <meta property="og:description" content="관심상품을 선택하고, 최저가 알림을 확인해보세요!">
     <meta property="og:image" content="/images/og_selectshop.png">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
     <script src="js/basic.js"></script>
     <title>꼬리의 사료냠냠 셀렉샵</title>
 </head>
@@ -34,8 +36,21 @@
     </div>
 </div>
 <div id="see-area">
-    <div id="product-container">
+    <div class="pagination">
+        정렬:
+        <label for="sorting"></label>
+        <select id="sorting" onchange="showProduct()">
+            <option value="id">ID</option>
+            <option value="title">상품명</option>
+            <option value="lowPrice">최저가</option>
+            <option value="createdAt">생성일</option>
+        </select>
+        <input title="ASC" type="radio" name="isAsc" value="true" onchange="showProduct()" checked /> 오름차순
+        <input title="DESC" type="radio" name="isAsc" value="false" onchange="showProduct()" /> 내림차순
     </div>
+    <div id="pagination" class="pagination"></div>
+    <ul id="product-container">
+    </ul>
 </div>
 <div id="search-area">
     <div>
