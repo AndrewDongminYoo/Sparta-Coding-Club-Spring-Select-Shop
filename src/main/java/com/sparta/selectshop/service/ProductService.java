@@ -46,4 +46,9 @@ public class ProductService {
         productRepository.save(product);
         return product;
     }
+
+    // 모든 상품 조회 (관리자용)
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
 }

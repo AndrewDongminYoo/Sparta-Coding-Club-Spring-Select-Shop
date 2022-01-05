@@ -38,4 +38,10 @@ public class ProductRestController {
     public Long updateProduct(@PathVariable Long id, @RequestBody ProductMypriceRequestDto requestDto) {
         return productService.update(id, requestDto);
     }
+
+    // (관리자용) 등록된 모든 상품 목록 조회
+    @GetMapping("/api/admin/products")
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
 }
