@@ -146,7 +146,7 @@ button {
     width: 320px;
     height: 22px;
     border-radius: 2px;
-    border: solid 1.1px #dee2e6;
+    border: solid 1px #dee2e6;
     margin-right: 9px;
     margin-bottom: 10px;
     padding-left: 10px;
@@ -163,8 +163,8 @@ button {
 }
 
 .popup button.cta {
-    width: 369.1px;
-    height: 43.9px;
+    width: 369px;
+    height: 44px;
     border-radius: 2px;
     background-color: #15aabf;
     border: none;
@@ -211,7 +211,7 @@ button {
 #header-title-select-shop {
     margin-top: 20px;
     font-size: 45px;
-    letter-spacing: 1.1px;
+    letter-spacing: 1px;
 }
 
 #product-container {
@@ -255,7 +255,7 @@ button {
 }
 
 .product-card .card-body .lprice {
-    font-size: 15.8px;
+    font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -266,7 +266,7 @@ button {
 }
 
 .product-card .card-body .lprice span {
-    font-size: 13.4px;
+    font-size: 13px;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
@@ -280,7 +280,7 @@ button {
     margin-top: 10px;
     padding: 10px 20px;
     color: white;
-    border-radius: 2.6px;
+    border-radius: 3px;
     background-color: #ff8787;
     width: 48px;
 }
@@ -378,7 +378,6 @@ button {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    /*margin: 0 0 8px;*/
     padding: 11px 12px;
     border-radius: 5px;
     background-color: #ffd43b;
@@ -574,8 +573,6 @@ button {
         border-radius: 2px;
         background-color: #e9ecef;
         border: none;
-
-        background-image: url('../images/icon-search.png');
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 20px 20px;
@@ -639,7 +636,7 @@ button {
 
     .popup button.cta {
         width: 319px;
-        height: 43.9px;
+        height: 44px;
         border-radius: 2px;
         background-color: #15aabf;
         border: none;
