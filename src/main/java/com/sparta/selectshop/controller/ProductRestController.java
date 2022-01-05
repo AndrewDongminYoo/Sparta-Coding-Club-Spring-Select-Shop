@@ -19,9 +19,11 @@ public class ProductRestController {
     private final ProductRepository productRepository;
     private final ProductService productService;
 
+    // 로그인한 회원이 등록한 상품들 조회
     @GetMapping("/api/products")
-    public List<Product> readProducts() {
-        return productRepository.findAll();
+    public List<Product> getProducts(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        Long userId = userDetails.getUser().getId();
+        return productService.getProducts(userId);
     }
 
     @PostMapping("/api/products")
