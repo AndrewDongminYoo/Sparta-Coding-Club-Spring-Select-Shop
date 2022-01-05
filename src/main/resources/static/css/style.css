@@ -254,7 +254,7 @@ button {
     text-overflow: ellipsis;
 }
 
-.product-card .card-body .lprice {
+.product-card .card-body .lowPrice {
     font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
@@ -265,7 +265,7 @@ button {
     margin-bottom: 10px;
 }
 
-.product-card .card-body .lprice span {
+.product-card .card-body .lowPrice span {
     font-size: 13px;
     font-weight: 600;
     font-stretch: normal;
@@ -715,7 +715,7 @@ button {
     /*    text-overflow: ellipsis;*/
     /*}*/
 
-    /*.product-card .card-body .lprice {*/
+    /*.product-card .card-body .lowPrice {*/
     /*    font-size: 15.8px;*/
     /*    font-weight: normal;*/
     /*    font-stretch: normal;*/
@@ -726,7 +726,7 @@ button {
     /*    margin-bottom: 10px;*/
     /*}*/
 
-    /*.product-card .card-body .lprice span {*/
+    /*.product-card .card-body .lowPrice span {*/
     /*    font-size: 21.4px;*/
     /*    font-weight: 600;*/
     /*    font-stretch: normal;*/

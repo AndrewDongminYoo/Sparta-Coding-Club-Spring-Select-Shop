@@ -7,7 +7,6 @@ $(document).ready(function () {
             execSearch();
         }
     });
-
     $('#close').on('click', function () {
         $('#container').removeClass('active');
     })
@@ -30,9 +29,52 @@ $(document).ready(function () {
     $('#see-area').show();
     $('#search-area').hide();
 
-    showProduct();
+    if ($('#admin').length === 1) {
+        showProduct(true);
+    } else {
+        showProduct();
+    }
 })
 
+function showProduct(isAdmin = false) {
+    // 1. GET /api/products 요청
+    // 2. #product-container(관심상품 목록), #search-result-box(검색결과 목록) 비우기
+    // 3. for 문 마다 addProductItem 함수 실행시키고 HTML 만들어서 #product-container 에 붙이기
+    $.ajax({
+        type: 'GET',
+        url: isAdmin ? '/api/admin/products' : '/api/products',
+        success: function (response) {
+            $('#product-container').empty();
+            $('#search-result-box').empty();
+            for (let i = 0; i < response.length; i++) {
+                let product = response[i];
+                let tempHtml = addProductItem(product);
+                $('#product-container').append(tempHtml);
+            }
+        }
+    })
+}
+
+function addProductItem(product) {
+    const {link, lowPrice, image, title, myPrice} = product;
+    return `<div class="product-card" onclick="window.location.href='${link}'">
+                <div class="card-header">
+                    <img src="${image}"
+                         alt="">
+                </div>
+                <div class="card-body">
+                    <div class="title">
+                        ${title}
+                    </div>
+                    <div class="lowPrice">
+                        <span>${numberWithCommas(lowPrice)}</span>원
+                    </div>
+                    <div class="isgood ${lowPrice > myPrice ? 'none' : ''}">
+                        최저가
+                    </div>
+                </div>
+            </div>`;
+}
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -86,57 +128,15 @@ function addHTML(itemDto) {
 
 function addProduct(itemDto) {
     $.ajax({
-        // 1. POST /api/products 에 관심 상품 생성 요청
         type: "POST",
         url: "/api/products",
         contentType: "application/json",
         data: JSON.stringify(itemDto),
         success: function (response) {
-            // 2. 응답 함수에서 modal 을 뜨게 하고, targetId 를 response.id 로 설정
             $('#container').addClass('active');
             targetId = response.id;
         }
     })
-}
-
-function showProduct() {
-    $.ajax({  // 1. GET /api/products 요청
-        type: "GET",
-        url: "/api/products",
-        success: function (response) {
-            // 2. 관심상품 목록, 검색결과 목록 비우기
-            let productContainer = $('#product-container')
-            productContainer.empty();
-            $("#search-result-box").empty();
-            response && response.forEach((product) => {
-                // 3. for 문마다 관심 상품 HTML 만들어서 관심상품 목록에 붙이기!
-                let tempHtml = addProductItem(product);
-                productContainer.append(tempHtml);
-            })
-        }
-    })
-}
-
-function addProductItem(product) {
-    // link, image, title, lowPrice, myPrice 변수 활용하기
-    const { title, image, link, lowPrice, myPrice } = product;
-    return `<div class="product-card" onclick="window.location.href='${link}'">
-            <div class="card-header">
-                <img src="${image}"
-                     alt="${title}">
-            </div>
-            <div class="card-body">
-                <div class="title">
-                    ${title}
-                </div>
-                <div class="lprice">
-                    <span>${numberWithCommas(lowPrice)}</span>원
-                </div>
-                <div class="isgood ${lowPrice < myPrice ? "" : "none"}">
-                    최저가
-                </div>
-            </div>
-        </div>`;
 }
 
 function setMyPrice() {
@@ -153,7 +153,7 @@ function setMyPrice() {
         type: "PUT",
         url: `/api/products/${targetId}`,
         contentType: "application/json",
-        data: JSON.stringify({myPrice: myPrice}),
+        data: JSON.stringify({myPrice: myPrice.val()}),
         success: function () {
             // 4. 모달을 종료한다. $('#container').removeClass('active');
             $('#container').removeClass('active');
