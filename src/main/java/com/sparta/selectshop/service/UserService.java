@@ -22,7 +22,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     public void registerUser(SignupRequestDto requestDto) {
         String username = requestDto.getUsername();
         // 회원 ID 중복 확인

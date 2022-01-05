@@ -5,6 +5,7 @@ import com.sparta.selectshop.dto.ProductMypriceRequestDto;
 import com.sparta.selectshop.dto.ProductRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Getter
@@ -31,11 +32,17 @@ public class Product extends Timestamped {
     @Column(nullable = false)
     private int myPrice;
 
-    public Product(ProductRequestDto productRequestDto) {
-        this.title = productRequestDto.getTitle();
-        this.image = productRequestDto.getImage();
-        this.link = productRequestDto.getLink();
-        this.lowPrice = productRequestDto.getLowPrice();
+    @Column(nullable = false)
+    private Long userId;
+
+    // 관심 상품 생성 시 이용합니다.
+    public Product(ProductRequestDto requestDto, Long userId) {
+        // 관심상품을 등록한 회원 Id 저장
+        this.userId = userId;
+        this.title = requestDto.getTitle();
+        this.image = requestDto.getImage();
+        this.link = requestDto.getLink();
+        this.lowPrice = requestDto.getLowPrice();
         this.myPrice = 0;
     }
 
